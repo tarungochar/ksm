@@ -1,40 +1,26 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { X, Menu } from "lucide-react"; // Ensure this package is installed
+import { useState } from "react";
+import { Menu, X } from "lucide-react";  // ✅ Icon के लिए
+import { Link } from "react-router-dom"; // ✅ React Router के लिए
 
 const Navbar = () => {
-  const [user, setUser] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    axios.get(process.env.REACT_APP_API_URL + "/user")
-      .then((response) => {
-        setUser(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching user:", error);
-      });
-  }, []);
-
   return (
-    <nav className="bg-primary text-white p-4 shadow-lg flex justify-between items-center">
-      <div>
-        {user && <p className="text-sm">Welcome, {user.name}!</p>}
-        <h1 className="text-2xl font-bold">KSM - Kota Startup Mart</h1>
+    <nav className="bg-primary text-white p-4 shadow-lg">
+      <div className="max-w-7xl mx-auto flex justify-between items-center">
+        <h1 className="text-2xl font-bold">KSM Project</h1>
+        <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
       </div>
 
-      <button onClick={() => setIsOpen(!isOpen)}>
-        {isOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
-
       {isOpen && (
-        <div className="absolute top-12 right-0 bg-white shadow-lg p-4">
-          <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>Contact</li>
-          </ul>
-        </div>
+        <ul className="md:hidden flex flex-col space-y-3 mt-4 text-center">
+          <li><Link to="/" className="hover:text-secondary">Home</Link></li>
+          <li><Link to="/explore" className="hover:text-secondary">Explore</Link></li>
+          <li><Link to="/startups" className="hover:text-secondary">Startups</Link></li>
+          <li><Link to="/contact" className="hover:text-secondary">Contact</Link></li>
+        </ul>
       )}
     </nav>
   );
