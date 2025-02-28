@@ -1,0 +1,7 @@
+const MyComponent = () => {
+  return (
+    <div className="p-72 bg-gray-100">
+      <h1 className="text-center">This div has custom spacing</h1>
+    </div>
+  );
+};

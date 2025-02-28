@@ -1,0 +1,9 @@
+const MyComponent = () => {
+  return (
+    <div className="bg-customColor text-white p-4">
+      <button className="bg-customColor text-white py-2 px-4 rounded-md">
+        Custom Button
+      </button>
+    </div>
+  );
+};

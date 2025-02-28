@@ -1,0 +1,7 @@
+const MyComponent = () => {
+  return (
+    <div className="bg-customColor text-white p-4">
+      <h1 className="font-customFont text-xl">Hello World with Custom Styles</h1>
+    </div>
+  );
+};
